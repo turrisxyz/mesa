@@ -204,8 +204,10 @@ clCreateImageWithProperties(cl_context d_ctx,
 
    const cl_mem_flags flags = validate_flags(desc->buffer, d_flags, false);
 
+#if 0
    if (!supported_formats(ctx, desc->image_type).count(*format))
       throw error(CL_IMAGE_FORMAT_NOT_SUPPORTED);
+#endif
 
    std::vector<cl_mem_properties> properties = fill_properties(d_properties);
    ret_error(r_errcode, CL_SUCCESS);
