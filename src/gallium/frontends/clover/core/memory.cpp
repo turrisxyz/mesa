@@ -172,7 +172,7 @@ image::image(clover::context &ctx,
              void *host_ptr) :
    memory_obj(ctx, properties, flags, size, host_ptr),
    _format(*format), _width(width), _height(height), _depth(depth),
-   _row_pitch(row_pitch), _slice_pitch(slice_pitch) {
+   _row_pitch(row_pitch), _slice_pitch(slice_pitch), _array_size(0) {
 }
 
 resource &
@@ -241,6 +241,11 @@ image::row_pitch() const {
 size_t
 image::slice_pitch() const {
    return _slice_pitch;
+}
+
+size_t
+image::array_size() const {
+   return _array_size;
 }
 
 image1d::image1d(clover::context &ctx,
