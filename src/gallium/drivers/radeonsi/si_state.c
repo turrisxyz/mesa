@@ -2231,10 +2231,10 @@ static bool si_is_format_supported(struct pipe_screen *screen, enum pipe_format 
    }
 
    if ((usage & (PIPE_BIND_RENDER_TARGET | PIPE_BIND_DISPLAY_TARGET | PIPE_BIND_SCANOUT |
-                 PIPE_BIND_SHARED | PIPE_BIND_BLENDABLE)) &&
+                 PIPE_BIND_SHARED | PIPE_BIND_COMPUTE_RESOURCE | PIPE_BIND_BLENDABLE)) &&
        si_is_colorbuffer_format_supported(sscreen->info.chip_class, format)) {
       retval |= usage & (PIPE_BIND_RENDER_TARGET | PIPE_BIND_DISPLAY_TARGET | PIPE_BIND_SCANOUT |
-                         PIPE_BIND_SHARED);
+                         PIPE_BIND_SHARED | PIPE_BIND_COMPUTE_RESOURCE);
       if (!util_format_is_pure_integer(format) && !util_format_is_depth_or_stencil(format))
          retval |= usage & PIPE_BIND_BLENDABLE;
    }
