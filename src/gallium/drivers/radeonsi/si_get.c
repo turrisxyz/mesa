@@ -800,7 +800,11 @@ static int si_get_compute_param(struct pipe_screen *screen, enum pipe_shader_ir 
    case PIPE_COMPUTE_CAP_IMAGES_SUPPORTED:
       if (ret) {
          uint32_t *images_supported = ret;
-         *images_supported = 0;
+         if (sscreen->debug_flags & DBG(IMAGE_SUPPORT)){
+             *images_supported = 1;
+         } else {
+             *images_supported = 0;
+         }
       }
       return sizeof(uint32_t);
    case PIPE_COMPUTE_CAP_MAX_PRIVATE_SIZE:

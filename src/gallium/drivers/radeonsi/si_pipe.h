@@ -214,6 +214,7 @@ enum
    DBG_CHECK_VM,
    DBG_RESERVE_VMID,
    DBG_SHADOW_REGS,
+   DBG_IMAGE_SUPPORT,
 
    /* 3D engine options: */
    DBG_NO_GFX,

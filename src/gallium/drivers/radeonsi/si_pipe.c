@@ -86,6 +86,7 @@ static const struct debug_named_value radeonsi_debug_options[] = {
    {"check_vm", DBG(CHECK_VM), "Check VM faults and dump debug info."},
    {"reserve_vmid", DBG(RESERVE_VMID), "Force VMID reservation per context."},
    {"shadowregs", DBG(SHADOW_REGS), "Enable CP register shadowing."},
+   { "image_support", DBG(IMAGE_SUPPORT), "Enable image support for clover."},
 
    /* 3D engine options: */
    {"nogfx", DBG(NO_GFX), "Disable graphics. Only multimedia compute paths can be used."},
