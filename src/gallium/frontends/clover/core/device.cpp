@@ -136,8 +136,24 @@ device::max_image_size() const {
 }
 
 cl_uint
+device::max_image_size_2d() const {
+   return pipe->get_param(pipe, PIPE_CAP_MAX_TEXTURE_2D_SIZE);
+}
+
+cl_uint
+device::max_image_levels_2d() const {
+   //Why last_bit?
+   return util_last_bit(pipe->get_param(pipe, PIPE_CAP_MAX_TEXTURE_2D_SIZE));
+}
+
+cl_uint
 device::max_image_size_3d() const {
    return 1 << (pipe->get_param(pipe, PIPE_CAP_MAX_TEXTURE_3D_LEVELS) - 1);
+}
+
+cl_uint
+device::max_image_levels_3d() const {
+   return pipe->get_param(pipe, PIPE_CAP_MAX_TEXTURE_3D_LEVELS);
 }
 
 size_t
