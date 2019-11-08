@@ -136,12 +136,13 @@ namespace clover {
             std::vector<cl_mem_properties> properties,
             cl_mem_flags flags,
             const cl_image_format *format,
-            size_t width, size_t height, size_t depth,
+            cl_uint dimensions, size_t width, size_t height, size_t depth,
             size_t row_pitch, size_t slice_pitch, size_t size,
             void *host_ptr, size_t array_size = 0, cl_mem buffer = NULL);
 
    public:
       cl_image_format format() const;
+      cl_uint dimensions() const;
       size_t width() const;
       size_t height() const;
       size_t depth() const;
@@ -162,6 +163,7 @@ namespace clover {
          resource(command_queue &q, const void *data_ptr);
 
       cl_image_format _format;
+      cl_uint _dimensions;
       size_t _width;
       size_t _height;
       size_t _depth;
