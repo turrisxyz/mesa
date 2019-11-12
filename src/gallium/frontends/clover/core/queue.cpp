@@ -45,7 +45,8 @@ namespace {
 command_queue::command_queue(clover::context &ctx, clover::device &dev,
                              cl_command_queue_properties props) :
    context(ctx), device(dev), _props(props) {
-   pipe = dev.pipe->context_create(dev.pipe, NULL, PIPE_CONTEXT_COMPUTE_ONLY);
+   pipe = dev.pipe->context_create(dev.pipe, NULL,
+      !dev.image_support() ? PIPE_CONTEXT_COMPUTE_ONLY : 0);
    if (!pipe)
       throw error(CL_INVALID_DEVICE);
 
@@ -71,7 +72,8 @@ command_queue::command_queue(clover::context &ctx, clover::device &dev,
          throw error(CL_INVALID_VALUE);
    }
 
-   pipe = dev.pipe->context_create(dev.pipe, NULL, PIPE_CONTEXT_COMPUTE_ONLY);
+   pipe = dev.pipe->context_create(dev.pipe, NULL,
+      !dev.image_support() ? PIPE_CONTEXT_COMPUTE_ONLY : 0);
    if (!pipe)
       throw error(CL_INVALID_DEVICE);
 
