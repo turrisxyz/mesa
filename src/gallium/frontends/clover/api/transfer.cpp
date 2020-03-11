@@ -833,6 +833,13 @@ clEnqueueMapBuffer(cl_command_queue d_q, cl_mem d_mem, cl_bool blocking,
    if (blocking)
        hev().wait_signalled();
 
+   if (row_pitch){
+      *row_pitch = img.row_pitch();
+   }
+   if (slice_pitch){
+      *slice_pitch = img.slice_pitch();
+   }
+
    ret_object(rd_ev, hev);
    ret_error(r_errcode, CL_SUCCESS);
    return *map;
