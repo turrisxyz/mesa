@@ -2398,7 +2398,7 @@
         "description": "zink: don't check rebind count outside of buffer/image rebind function",
         "nominated": true,
         "nomination_type": 0,
-        "resolution": 0,
+        "resolution": 2,
         "main_sha": null,
         "because_sha": null
     },
