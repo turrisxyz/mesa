@@ -733,7 +733,6 @@ emit_depthstencil_clear(struct radv_cmd_buffer *cmd_buffer, const VkClearAttachm
 {
    struct radv_device *device = cmd_buffer->device;
    struct radv_meta_state *meta_state = &device->meta_state;
-   const struct radv_subpass *subpass = cmd_buffer->state.subpass;
    const uint32_t pass_att = ds_att->attachment;
    VkClearDepthStencilValue clear_value = clear_att->clearValue.depthStencil;
    VkImageAspectFlags aspects = clear_att->aspectMask;
@@ -780,14 +779,6 @@ emit_depthstencil_clear(struct radv_cmd_buffer *cmd_buffer, const VkClearAttachm
    if (!pipeline)
       return;
 
-   struct radv_subpass clear_subpass = {
-      .color_count = 0,
-      .color_attachments = NULL,
-      .depth_stencil_attachment = ds_att,
-   };
-
-   radv_cmd_buffer_set_subpass(cmd_buffer, &clear_subpass);
-
    radv_CmdBindPipeline(cmd_buffer_h, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
 
    if (depth_view_can_fast_clear(cmd_buffer, iview, aspects, ds_att->layout, ds_att->in_render_loop,
@@ -813,8 +804,6 @@ emit_depthstencil_clear(struct radv_cmd_buffer *cmd_buffer, const VkClearAttachm
    if (aspects & VK_IMAGE_ASPECT_STENCIL_BIT) {
       radv_CmdSetStencilReference(cmd_buffer_h, VK_STENCIL_FACE_FRONT_BIT, prev_reference);
    }
-
-   radv_cmd_buffer_restore_subpass(cmd_buffer, subpass);
 }
 
 static uint32_t
