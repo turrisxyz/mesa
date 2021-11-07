@@ -2455,7 +2455,7 @@ radv_emit_framebuffer_state(struct radv_cmd_buffer *cmd_buffer)
 
    /* this may happen for inherited secondary recording */
    if (!framebuffer)
-      return;
+      abort();
 
    for (i = 0; i < 8; ++i) {
       if (i >= subpass->color_count ||
@@ -4394,7 +4394,7 @@ radv_BeginCommandBuffer(VkCommandBuffer commandBuffer, const VkCommandBufferBegi
       cmd_buffer->state.inherited_pipeline_statistics =
          pBeginInfo->pInheritanceInfo->pipelineStatistics;
 
-      radv_cmd_buffer_set_subpass(cmd_buffer, subpass);
+      cmd_buffer->state.subpass = subpass;
    }
 
    if (unlikely(cmd_buffer->device->trace_bo))
