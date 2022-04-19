@@ -206,7 +206,9 @@
     B2C_TIMEOUT_OVERALL_MINUTES: 240
     B2C_TIMEOUT_RETRIES: 0
 
+    MESA_BASE_TAG: *debian-x86_test-base
     MESA_IMAGE_PATH: "debian/x86_test-vk"
+    MESA_IMAGE_TAG: *debian-x86_test-vk
     IMAGE_UNDER_TEST: "$CI_REGISTRY_IMAGE/${MESA_IMAGE_PATH}:${FDO_DISTRIBUTION_TAG}"
 
     INSTALL_TARBALL: "./artifacts/install.tar"
